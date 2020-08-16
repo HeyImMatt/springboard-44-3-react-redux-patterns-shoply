@@ -6,6 +6,10 @@ const INITIAL_STATE = localStorage.getItem('userCart')
 
 export default function cartReducer(state = INITIAL_STATE, action) {
   switch(action.type) {
+    case ADD_TO_CART:
+      return [...state, action.payload];
+    case REMOVE_FROM_CART:
+      return [...state].filter((item) => item.productId !== action.payload);
     default:
       return state;
   }
@@ -13,10 +17,10 @@ export default function cartReducer(state = INITIAL_STATE, action) {
 
 
 /*
-Cart will look like:
+Cart model:
 [
   {
-    productId: {prod obj},
+    productId: varchar,
     quantity: num
   }
 ]
