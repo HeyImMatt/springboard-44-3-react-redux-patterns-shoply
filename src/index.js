@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import rootReducer from './reducers/rootReducer';
 import './index.css';
-import App from './App';
+import Shop from './Shop';
 import * as serviceWorker from './serviceWorker';
 
 const store = createStore(
@@ -16,7 +16,7 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Shop />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
