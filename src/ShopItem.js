@@ -4,10 +4,10 @@ import {
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 
-export default function ShopItem( { product } ) {
+export default function ShopItem( { id, product, addItem } ) {
   return (
   <Col sm="6" className="mb-3">
-    <Card id={product.id}>
+    <Card id={id}>
       <CardImg top width="90%" src={product.image_url} alt={`Image of ${product.name}`} />
       <CardBody>
         <CardTitle>
@@ -19,7 +19,7 @@ export default function ShopItem( { product } ) {
         <CardText>
           {product.description}
         </CardText>
-        <Button type="button" color="info">Add to Cart</Button>
+        <Button type="button" color="info" onClick={() => {addItem(id)}}>Add to Cart</Button>
       </CardBody>
     </Card>
   </Col>
