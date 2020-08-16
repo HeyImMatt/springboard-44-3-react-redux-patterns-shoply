@@ -1,26 +1,28 @@
 import React from 'react';
 import {
-  Card, CardImg, CardText, CardBody,
+  Col, Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 
 export default function ShopItem( { product } ) {
   return (
-  <Card id={product.id}>
-    <CardImg top width="90%" src={product.image_url} alt={`Image of ${product.name}`} />
-    <CardBody>
-      <CardTitle>
-        {product.name}
-      </CardTitle>
-      <CardSubtitle>
-        {product.price}
-      </CardSubtitle>
-      <CardText>
-        {product.description}
-      </CardText>
-      <Button type="button" color="info">Add to Cart</Button>
-    </CardBody>
-  </Card>
+  <Col sm="6" className="mb-3">
+    <Card id={product.id}>
+      <CardImg top width="90%" src={product.image_url} alt={`Image of ${product.name}`} />
+      <CardBody>
+        <CardTitle>
+          {product.name}
+        </CardTitle>
+        <CardSubtitle>
+          ${product.price}
+        </CardSubtitle>
+        <CardText>
+          {product.description}
+        </CardText>
+        <Button type="button" color="info">Add to Cart</Button>
+      </CardBody>
+    </Card>
+  </Col>
   )
 }
 

@@ -13,9 +13,9 @@ export default function Shop() {
       <Row>
         <Col className="text-center">
         <h1>SHOPLY</h1>
-          <Col>
-            {shopItems}
-          </Col>
+        <Row>
+          {shopItems}
+        </Row>
         </Col>
       </Row>
     </Container>
