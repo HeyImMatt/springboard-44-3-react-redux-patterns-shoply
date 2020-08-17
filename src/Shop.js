@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap'
 import ShopItem from './ShopItem';
+import Cart from './Cart'
 import { ADD_TO_CART } from './actionTypes';
 
 export default function Shop() {
@@ -21,15 +22,15 @@ export default function Shop() {
     return <ShopItem key={prodId} id={prodId} product={prod} addItem={addItem} />
   });
 
-  const cartItems = cart.map((item) => ( `Item Name: ${inventory[item.productId].name}`  ))
+  const cartItems = cart.map((item) => ( [inventory[item.productId]] ))
 
 
   return (
     <Container>
       <Row>
         <Col className="text-center">
-        <h1>SHOPLY</h1>
-        <h3>Cart: {cartItems}</h3>
+        <h1 className='d-inline-block'>SHOPLY</h1>
+        <Cart />
         <Row>
           {shopItems}
         </Row>
