@@ -10,7 +10,7 @@ export default function Shop() {
   const dispatch = useDispatch();
   const inventory = useSelector(state => state.inventory);
   const shopArr = Object.entries(inventory).map((p) => ({ [p[0]]: p[1] }));
-  const cart = useSelector(state => state.cart);
+
   const addItem = (id) => {
     dispatch({type: ADD_TO_CART, payload: { productId: id, quantity: 1 } })
   }
@@ -21,9 +21,6 @@ export default function Shop() {
 
     return <ShopItem key={prodId} id={prodId} product={prod} addItem={addItem} />
   });
-
-  const cartItems = cart.map((item) => ( [inventory[item.productId]] ))
-
 
   return (
     <Container>
