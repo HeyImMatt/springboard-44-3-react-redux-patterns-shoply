@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import { useSelector } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-export default function Cart({ removeItem }) {
+export default function Cart({ removeItem, incrementQuantity, decrementQuantity }) {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
 
   const cart = useSelector(state => state.cart);
   const inventory = useSelector(state => state.inventory);
+
   const cartItems = cart.map((item) => ( {...inventory[item.productId], id: item.productId, quantity: item.quantity} ))
   const cartTotal = cartItems.reduce((acc, item) => {
     return acc += item.price * item.quantity;
@@ -17,7 +18,7 @@ export default function Cart({ removeItem }) {
     <div key={item.id} id={item.id}>
       <p><b>{item.name}</b></p>    
       <p>${item.price}</p>    
-      <p>Quantity: {item.quantity}</p>
+      <p>Quantity: {item.quantity}  <Button color="info" size="sm" onClick={() => {incrementQuantity(item.id)}}>+</Button> <Button color="info" size="sm" onClick={() => {decrementQuantity(item.id)}}>-</Button></p>
       <Button onClick={() => {removeItem(item.id)}} color="danger">Remove</Button>
     </div>
   ))
