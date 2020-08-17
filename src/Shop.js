@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap'
 import ShopItem from './ShopItem';
 import Cart from './Cart'
-import { ADD_TO_CART } from './actionTypes';
+import { ADD_TO_CART, REMOVE_FROM_CART } from './actionTypes';
 
 export default function Shop() {
 
@@ -13,6 +13,10 @@ export default function Shop() {
 
   const addItem = (id) => {
     dispatch({type: ADD_TO_CART, payload: { productId: id, quantity: 1 } })
+  }
+
+  const removeItem = (id) => {
+    dispatch({type: REMOVE_FROM_CART, payload: id })
   }
 
   const shopItems = shopArr.map((product) => {
@@ -27,7 +31,7 @@ export default function Shop() {
       <Row>
         <Col className="text-center">
         <h1 className='d-inline-block'>SHOPLY</h1>
-        <Cart />
+        <Cart removeItem={removeItem} />
         <Row>
           {shopItems}
         </Row>
