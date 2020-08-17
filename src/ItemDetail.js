@@ -1,18 +1,24 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import {
   Col, Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button
 } from 'reactstrap';
 
-export default function ShopItem( { id, product, addItem } ) {
+export default function ItemDetail( { addItem } ) {
+  const { id } = useParams();
+  const inventory = useSelector(state => state.inventory);
+  const product = inventory[id];
+  
+
   return (
   <Col sm="6" className="mb-3">
     <Card id={id}>
       <CardImg top width="90%" src={product.image_url} alt={`Image of ${product.name}`} />
       <CardBody>
         <CardTitle>
-          <Link to={`/products/${id}`}>{product.name}</Link>
+          {product.name}
         </CardTitle>
         <CardSubtitle>
           ${product.price}

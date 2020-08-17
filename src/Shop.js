@@ -2,8 +2,10 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap'
 import ShopItem from './ShopItem';
-import Cart from './Cart'
+import Cart from './Cart';
+import ItemDetail from './ItemDetail';
 import { ADD_TO_CART, REMOVE_FROM_CART, INCREMENT_QUANTITY, DECREMENT_QUANTITY } from './actionTypes';
+import { Switch, Route } from 'react-router-dom';
 
 export default function Shop() {
 
@@ -35,17 +37,24 @@ export default function Shop() {
   });
 
   return (
-    <Container>
-      <Row>
-        <Col className="text-center">
-        <h1 className='d-inline-block'>SHOPLY</h1>
-        <Cart removeItem={removeItem} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity}/>
-        <Row>
-          {shopItems}
-        </Row>
-        </Col>
-      </Row>
-    </Container>
+    <Switch>
+      <Route exact path='/products/:id'>
+        <ItemDetail />  
+      </Route>
+      <Route path='/'>
+        <Container>
+          <Row>
+            <Col className="text-center">
+            <h1 className='d-inline-block'>SHOPLY</h1>  
+            <Cart removeItem={removeItem} incrementQuantity={incrementQuantity} decrementQuantity={decrementQuantity}/>
+            <Row>
+              {shopItems}
+            </Row>
+            </Col>
+          </Row>
+        </Container>
+      </Route>
+    </Switch>
   );
 }
 
